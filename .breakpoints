@@ -1,0 +1,20 @@
+{
+  "files": {
+    ".gitignore": [
+      {
+        "id": "f25e1280-bcfb-46a0-b0c1-7dcc9b4a92f5",
+        "line": 4,
+        "version": 10,
+        "index": 17
+      }
+    ],
+    "hsh.h": [
+      {
+        "id": "4d933e70-3d36-4688-934c-ba21634c3694",
+        "line": 6,
+        "version": 1302,
+        "index": 72
+      }
+    ]
+  }
+}
