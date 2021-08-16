@@ -7,7 +7,7 @@
 
 void loop(char **argv)
 {
-	char *line;
+	char *line = NULL;
 	int *cmd_counter, bytes, loop_status;
 
 	cmd_counter = &globals()->program_counter;
