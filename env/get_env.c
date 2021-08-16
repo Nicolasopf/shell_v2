@@ -11,10 +11,8 @@ char *_getenv(const char *pattern)
 	len = _strlen(pattern);
 
 	for (i = 0; environ[i]; i++)
-	{
 		if (_strncmp(pattern, environ[i], len) == 0 && environ[i][len] == '=')
 			return (environ[i] + len + 1);
-	}
 
 	return (NULL);
 }
