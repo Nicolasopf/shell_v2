@@ -61,7 +61,7 @@ int _chdir(char **argv)
 	if (print_old)
 	{
 		cwd = getcwd(NULL, 0);
-		puts(cwd);
+		printf("%s\n", cwd);
 		free(cwd);
 	}
 
