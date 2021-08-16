@@ -32,7 +32,6 @@ void loop(char **argv)
 /**
  * reader - Read a line from stdin.
  * @line: Line where to put the stdin.
- * @n: num of bytes.
  * Return: Size of bytes read.
  */
 
