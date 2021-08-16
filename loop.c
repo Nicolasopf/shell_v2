@@ -9,12 +9,13 @@ void loop(char **argv)
 {
 	char *line = NULL;
 	int *cmd_counter, bytes, loop_status;
+	size_t n = 0;
 
 	cmd_counter = &globals()->program_counter;
 	while (1)
 	{
 		(*cmd_counter)++;
-		bytes = reader(&line);
+		bytes = reader(&line, &n);
 		if (bytes == EOF)
 			break;
 		if (bytes == 1)
@@ -34,16 +35,15 @@ void loop(char **argv)
  * Return: Size of bytes read.
  */
 
-int reader(char **line)
+int reader(char **line, size_t *n)
 {
 	int bytes;
-	size_t n = 0;
 	char *runner;
 
 	if (isatty(STDIN_FILENO))
 		printf("%s", PROMPT);
 
-	bytes = getline(line, &n, stdin);
+	bytes = getline(line, n, stdin);
 	if (bytes == EOF)
 	{
 		if (isatty(STDIN_FILENO))
