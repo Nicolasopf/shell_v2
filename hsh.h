@@ -39,7 +39,7 @@ int _isnum(const char * const str);
  * Loop, read, run command, etc
  * FILE: loop.c
  */
-int reader(char **line);
+int reader(char **line, size_t *n);
 void loop(char **argv);
 int run_command(char **input, char **argv);
 int execute(char const *cmd, char *const *args);
