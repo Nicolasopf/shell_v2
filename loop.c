@@ -75,30 +75,34 @@ int run_command(char **input, char **argv)
 	char **cmd_argv, *full_path;
 	int status = SUCCESS, *program_status = &globals()->program_status;
 
+	(void) argv;
+
 	cmd_argv = _strsplit(line);
 	if (cmd_argv)
 	{
 		_strclear2(cmd_argv[0]);
-		full_path = which(cmd_argv[0]);
-		if (full_path)
+		status = _builtins(cmd_argv);
+		if (status == NOTFOUND)
 		{
-			*program_status = 0;
-			if (execute(full_path, cmd_argv) != 0)
-				*program_status = 2;
-			free(full_path);
+			full_path = which(cmd_argv[0]);
+			if (full_path)
+			{
+				*program_status = 0;
+				if (execute(full_path, cmd_argv) != 0)
+					*program_status = 2;
+				free(full_path);
+			}
+			else
+			{
+				*program_status = 127;
+				_perror(1, line);
+			}
+			status = CONTINUE;
 		}
-		else
-		{
-			*program_status = 127;
-			_perror(1, line);
-		}
-		status = CONTINUE;
+		free(cmd_argv);
 	}
-	free(cmd_argv);
 
-	(void) argv;
 	return (status);
-
 }
 
 /**
