@@ -15,18 +15,20 @@ extern char **environ;
 /* Strings folder: START */
 
 /* string_utils.c */
-
 size_t _strlen(const char *s);
 int _atoi(char *str);
 int _strcmp(const char *s1, const char *s2);
 char *_strcpy(char *dst, const char *src);
 char *_strdup(const char *s);
-int _strncmp(const char *s1, const char *s2, size_t n);
 
 /* string_utils2.c */
 char **_strsplit(char *str);
 void _strclear2(char *const str);
 char *_strclear(char const *str, char const *token);
+int _strncmp(const char *s1, const char *s2, size_t n);
+
+/* string_utils3.c */
+int _isnum(const char * const str);
 
 
 /* Strings folder: END */
@@ -54,6 +56,13 @@ char *which(char *cmd);
  * Environment functions.
  */
 char *_getenv(const char *pattern);
+
+
+/*
+ * Builtin functions
+ */
+int _builtins(char **argv);
+
 
 
 /**
