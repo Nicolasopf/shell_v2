@@ -19,3 +19,38 @@ int _isnum(const char * const str)
 			return (0);
 	return (1);
 }
+
+/**
+ * copy_pointer_array - double array to copy.
+ * @double_array: double array to copy.
+ */
+
+
+void copy_pointer_array(char **double_array)
+{
+	unsigned int i;
+
+	globals()->environ = malloc(256);
+	for (i = 0; double_array[i]; i++)
+		globals()->environ[i] = _strdup(double_array[i]);
+	globals()->environ[i + 1] = NULL;
+}
+
+
+/**
+ * count_until_char - count includes characters
+ * @string: string to search
+ * @character: character a buscar
+ * Return: number of eachs character includes
+ */
+
+int count_until_char(char *string, char character)
+{
+	if (!string || !*string)
+		return (0);
+
+	if (*string != character)
+		return (1 + count_until_char(string + 1, character));
+
+	return (count_until_char(string + 1, character));
+}
