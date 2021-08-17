@@ -1,9 +1,11 @@
 #include "../hsh.h"
+
 /**
  * _getenv - get enviroment from a variable
  * @pattern: input
  * Return: return program
  */
+
 char *_getenv(const char *pattern)
 {
 	int i, len;
