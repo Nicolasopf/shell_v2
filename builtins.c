@@ -44,13 +44,11 @@ int _chdir(char **argv)
 	else if (_strcmp(dst, "-") == 0)
 		print_old = 1, dst = oldpwd;
 
-	oldpwd = _strcat(working_dir);
+	oldpwd = concat_env(oldpwd, _getvalue(working_dir));
 	status = chdir(dst);
 	getcwd(actual_path, sizeof(actual_path));
 	if (status != -1)
-	{
 		working_dir = _strdup(actual_path);
-	}
 	else
 	{
 		_perror(3, dst);

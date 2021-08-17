@@ -31,6 +31,8 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 int _isnum(const char * const str);
 void copy_pointer_array(char **double_array);
 int count_until_char(char *string, char character);
+char* _strcat(char* destination, const char* source);
+char *concat_env(char *env, char *value);
 
 /* Strings folder: END */
 

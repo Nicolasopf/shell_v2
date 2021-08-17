@@ -54,3 +54,21 @@ int count_until_char(char *string, char character)
 
 	return (count_until_char(string + 1, character));
 }
+
+
+/**
+ * _strcat - concatenates two strings.
+ * @destination: string to destinate
+ * @source: source.
+ * Return: string.
+ */
+
+char *_strcat(char *destination, const char *source)
+{
+	char *ptr = destination + strlen(destination);
+
+	while (*source != '\0')
+		*ptr++ = *source++;
+	*ptr = '\0';
+	return (destination);
+}
