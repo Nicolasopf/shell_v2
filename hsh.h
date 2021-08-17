@@ -29,7 +29,8 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 
 /* string_utils3.c */
 int _isnum(const char * const str);
-
+void copy_pointer_array(char **double_array);
+int count_until_char(char *string, char character);
 
 /* Strings folder: END */
 
@@ -56,6 +57,7 @@ char *which(char *cmd);
  * Environment functions.
  */
 char *_getenv(const char *pattern);
+char *_getvalue(char *env);
 
 
 /*
@@ -82,12 +84,14 @@ typedef struct path_s
  * @program_status: output of the program
  * @program_name: argv[0] of the program
  * @program_counter: conter of commands
+ * @environ: Environment variable.
  */
 typedef struct global_s
 {
 	int program_status;
 	int program_counter;
 	char *program_name;
+	char **environ;
 } global_t;
 
 /**
