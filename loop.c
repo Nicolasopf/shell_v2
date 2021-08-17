@@ -32,6 +32,7 @@ void loop(char **argv)
 /**
  * reader - Read a line from stdin.
  * @line: Line where to put the stdin.
+ * @n: num of bytes.
  * Return: Size of bytes read.
  */
 
@@ -69,6 +70,7 @@ int reader(char **line, size_t *n)
  * @argv: values
  * Return: 0=SUCCESS 1=BREAK 2=CONTINUE 3=NOTFOUND
  */
+
 int run_command(char **input, char **argv)
 {
 	char *line = *input;
