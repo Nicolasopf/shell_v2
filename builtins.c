@@ -34,29 +34,29 @@ int _builtins(char **argv)
 int _chdir(char **argv)
 {
 	int status = CONTINUE, print_old = 0;
-	int *program_status = &globals()->program_status;
-	char *working_dir = _getenv("PWD"), *home = _getenv("HOME");
-	char *old = _getenv("OLDPWD"), *dst = argv[1], *cwd;
+	char *working_dir = _getenv("PWD"), *home = _getvalue("HOME");
+	char *oldpwd = _getenv("OLDPWD"), *dst = argv[1], *cwd, actual_path[1024];
 
-	*program_status = 0;
+	globals()->program_status = 0;
 
 	if (!dst || *dst == '~' || _strcmp(dst, "$HOME") == 0)
 		dst = home;
-
 	else if (_strcmp(dst, "-") == 0)
-		print_old = 1, dst = old;
+		print_old = 1, dst = oldpwd;
 
-	if (dst)
+	oldpwd = _strcat(working_dir);
+	status = chdir(dst);
+	getcwd(actual_path, sizeof(actual_path));
+	if (status != -1)
 	{
-		status = chdir(dst);
-		if (status != -1)
-			_strcpy(working_dir, dst);
-		else
-		{
-			_perror(3, dst);
-			*program_status = 2;
-		}
+		working_dir = _strdup(actual_path);
 	}
+	else
+	{
+		_perror(3, dst);
+		globals()->program_status = 2;
+	}
+
 
 	if (print_old)
 	{
@@ -77,9 +77,9 @@ int _printenv(void)
 {
 	int i;
 
-	if (environ)
-		for (i = 0; environ[i]; i++)
-			printf("%s\n", environ[i]);
+	if (globals()->environ)
+		for (i = 0; globals()->environ[i]; i++)
+			printf("%s\n", globals()->environ[i]);
 	return (CONTINUE);
 }
 
