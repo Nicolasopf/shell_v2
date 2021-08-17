@@ -40,7 +40,7 @@ int _chdir(char **argv)
 
 	*program_status = 0;
 
-	if (!dst)
+	if (!dst || *dst == '~' || _strcmp(dst, "$HOME") == 0)
 		dst = home;
 
 	else if (_strcmp(dst, "-") == 0)
