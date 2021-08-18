@@ -62,6 +62,5 @@ char *concat_env(char *env, char *value)
 		new_env[i] = value[j];
 	new_env[i] = '\0';
 
-	printf("NEW %s\n", new_env);
 	return (new_env);
 }
